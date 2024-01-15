@@ -13,15 +13,27 @@ RUN echo "deb [signed-by=/etc/apt/keyrings/kubernetes-apt-keyring.gpg] https://p
 RUN apt-get update -y
 RUN apt-get install -y kubectl
 
+
+COPY --from=golang:1.21 /usr/local/go/ /usr/local/go/
+ 
+ENV PATH="/usr/local/go/bin:${PATH}"
+
 RUN mkdir /workspace
+
 
 WORKDIR /workspace
 
 COPY . .
+
+WORKDIR /workspace/adm
+
 
 RUN mkdir -p /root/.kube
 
 RUN mv config /root/.kube/config
 
 
-CMD ["/workspace/runo"]
+RUN go build -o runo .
+
+
+CMD ["/workspace/adm/runo"]

@@ -35,5 +35,6 @@ echo "removing imported profile from remote host..."
 
 ssh -t "$TARGET_USER"@"$TARGET_ADDRESS" -p "$TARGET_PORT" "sudo rm -r /tmp/config"
 
+sudo chmod 777 config
 
 echo "success"

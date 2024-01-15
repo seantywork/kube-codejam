@@ -1,0 +1,8 @@
+adm/adm
+adm/srv
+srv/adm
+srv/srv
+adm/go.mod
+adm/go.sum
+srv/go.mod
+srv/go.sum
